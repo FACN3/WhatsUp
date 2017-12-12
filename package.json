@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/FACN3/WhatsUp/issues"
   },
-  "homepage": "https://github.com/FACN3/WhatsUp#readme"
+  "homepage": "https://github.com/FACN3/WhatsUp#readme",
+  "dependencies": {
+    "env2": "^2.2.0",
+    "pg": "^7.4.0"
+  }
 }
