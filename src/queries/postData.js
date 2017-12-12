@@ -1,4 +1,4 @@
-const connect = require("../../database/db_connection");
+const connect = require('../../database/db_connection');
 
 const createUser = (values, cb) => {
   connect.query(
@@ -8,9 +8,9 @@ const createUser = (values, cb) => {
       if (err) {
         cb(err);
       } else {
-        cb(null, JSON.stringify({ success: "This was a success" }));
+        cb(null, JSON.stringify({ success: 'This was a success' }));
       }
-      // cb(err,JSON.stringify({ success: "This was a success" }));
+      //cb(err, JSON.stringify({ success: 'This was a success' }));
     }
   );
 };
