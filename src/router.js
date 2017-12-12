@@ -3,10 +3,13 @@ const qs = require("querystring");
 
 const router = (req, res) => {
   var url = req.url;
-  var method = req.method;
   console.log(url);
-  if (url === "/" || url.includes("/public")) {
+  var method = req.method;
+  console.log(method);
+  if (url === "/" || url.includes("/public") || url.includes("/signUp")) {
     handler.publicHandler(req, res);
+  } else if (url.includes("/registration") && method == "POST") {
+    handler.createUser(req, res);
   } else {
     res.end("errorrrrr");
   }
