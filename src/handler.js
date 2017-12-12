@@ -8,7 +8,7 @@ const publicHandler = (req, res) => {
   var url = req.url;
   if (url === "/") {
     url = "/public/login.html";
-  } else if (url.includes("/signUp")) {
+  } else if (url.includes("/signup")) {
     url = "/public/signUp.html";
   }
   var parts = url.split(".")[1];
@@ -33,11 +33,13 @@ const publicHandler = (req, res) => {
 
 //sign up page
 const createUser = (req, res) => {
-  let data = " ";
+  let data = "";
   req.on("data", chunk => {
+    console.log('chunk recieved: ', chunk);
     data += chunk;
   });
   req.on("end", () => {
+    console.log(data)
     const formSubmittedData = queryString.parse(data);
     hash.hashPassword(formSubmittedData.password, (err, newPassword) => {
       if (err) {
@@ -64,11 +66,9 @@ const createUser = (req, res) => {
       }
     });
   });
+  req.on('error', err => {
+    console.log(err)
+  });
 };
 
-//log in page
-
-// const checkUser = (req,res) => {
-//
-// }
 module.exports = { publicHandler, createUser };

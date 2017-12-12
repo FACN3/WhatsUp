@@ -14,19 +14,15 @@
   </header>
   <section>
     <form action="/registration" method="POST">
-      <label for="usersName">
-        <input id="userName" placeholder="user name" type="text">
-      </label>
-      <label for="email">
-        <input id="email" placeholder="email" type="text">
-      </label>
-      <label for="password">
-        <input type="text" placeholder="password" id="password">
-      </label>
-      <label for="confirmPassword">
-        <input id="confirmPassword" placeholder="confirm password" type="text">
-      </label>
-      <button type="submit" id="signUp" >sign up</button>
+      <input id="name" placeholder="user name" type="text" name="name">
+      <label for="name"></label>
+      <input id="email" placeholder="email" type="text" name="email">
+      <label for="email"></label>
+      <input id="password" type="text" placeholder="password" name="password">
+      <label for="password"></label>
+      <input id="confirmPassword" placeholder="confirm password" type="text" name="confirmPassword">
+      <label for="confirmPassword"></label>
+      <button id="signUp" type="submit">sign up</button>
     </form>
   </section>
 
@@ -34,4 +30,5 @@
 
   <script src="../public/js/index.js"></script>
 </body>
+
 </html>
