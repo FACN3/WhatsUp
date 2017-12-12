@@ -47,9 +47,8 @@ const createUser = (req, res) => {
       } else {
         var values = {
           password: newPassword,
-          username: formSubmittedData.username,
           email: formSubmittedData.email,
-          permission: formSubmittedData.permission
+          name : formSubmittedData.name
         };
         // formSubmittedData.password = newPassword
         postData.createUser(values, (err, data) => {
