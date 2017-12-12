@@ -1,10 +1,29 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
+<html lang="en">
 
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <header>
+    <h1>Chat Room</h1>
+    <h4 id="userName"></h4>
+    <button id="logout">logout</button>
+    </head>
+    <section id="messagesArea">
+
+    </section>
+    <section>
+      <form action="/newMessage" method="POST">
+        <textarea id="message"></textarea>
+        <button id="createMessage">Create Message</button>
+      </form>
+    </section>
+</body>
+
 </html>
