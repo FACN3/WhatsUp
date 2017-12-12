@@ -1,14 +1,30 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="../public/css/style.css">
-    <title>LOGIN PAGE</title>
+<html lang="en">
 
-  </head>
-  <body>
-    <h1>LOGIN PAGE</h1>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" type="text/css" href="../public/css/style.css">
+  <title>Document</title>
+</head>
 
+<body>
+  <header>
+    <h1>Login Page</h1>
+  </header>
+  <section>
+    <form action="/login" method="POST" onsubmit="checkLogin">
+      <label for="userName">
+        <input placeholder="user name" id="userName" type="text">
+      </label>
+      <label for="password">
+        <Input placeholder="password" id="password" type="text"></Input>
+      </label>
+     <button id="login">login</button>
+    </form>
+  </section>
   <script src="../public/js/index.js"></script>
-  </body>
+</body>
+
 </html>
