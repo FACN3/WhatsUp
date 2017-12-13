@@ -3,7 +3,7 @@ const qs = require('querystring');
 
 const router = (req, res) => {
   const url = req.url;
-  if (url === '/' || url.includes('/public') || url.includes('/signup')) {
+  if (url === '/' || url.includes('/public') || url.includes('/registration')) {
     handler.publicHandler(req, res);
   } else if(url === '/chatRoom') {
     handler.chatRoomHandler(req, res);
