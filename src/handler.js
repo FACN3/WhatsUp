@@ -15,9 +15,7 @@ const publicHandler = (req, res) => {
   } else if (url.includes("/signup")) {
     url = "/public/signUp.html";
   }
-  else if (url.includes("/chatRoom")) {
-    url = "/public/chatRoom.html";
-  }
+
   var parts = url.split(".")[1];
   var extensionType = {
     css: "text/css",
@@ -35,6 +33,32 @@ const publicHandler = (req, res) => {
     res.end(data);
   });
 };
+
+//handle chatRoom
+
+const chatRoomHandler = (req, res) => {
+  console.log(req.headers.cookie);
+  if(!req.headers.cookie){ //cheking if the cookie does not exist as in there's no user with tha email signed up, then stay at home!
+    res.writeHead(302, {'Location': '/'});
+    res.end();
+  }else{
+  verify(req.headers.cookie.split("=")[1], process.env.SECRET, (err, cookie) => { // get the value of the cookie and the secret
+    if(err){
+      res.writeHead(302, {'Location': '/'});
+      res.end();
+    }else{ // if an email exists in our database then go to chatRoom
+      fs.readFile(path.join(__dirname, "..", "public/chatRoom.html"), (err, data) => {
+        if (err) {
+          res.writeHead(500, { "content-type": "text/html" });
+          return res.end("Internal Server Error");
+        }
+        res.writeHead(200, { "content-type": "text/html"});
+        res.end(data);
+      });
+    }
+  })
+}
+}
 
 //sign up page
 const createUser = (req, res) => {
@@ -83,15 +107,18 @@ const login = (req, res) => {
       if (err) {
         console.log(err);
       } else {
+        if(result.length==0){
+          res.writeHead(302, {
+            "Location": "/"
+          });
+          res.end("User does not exist");
+        }else{
         hash.comparePasswords(
           submittedLogin.password,
-          result.password,
+          result[0].password, // the callback from getData.js..since its res.rows and nor res.rows[0].. we need to apply result[0].password
           (err, hashed) => {
             if (err) {
               console.log(err, "user does not exist");
-              // res.writeHead(302, {
-              //   "Location": "/login"
-              // });
             } else {
               var user = {
                 'email': submittedLogin.email
@@ -104,10 +131,12 @@ const login = (req, res) => {
               res.end();
             }
           });
+        }
       }
     });
   });
   req.on("error", err => {});
 };
 
-module.exports = { publicHandler, createUser, login };
+
+module.exports = { publicHandler, createUser, login, chatRoomHandler};
