@@ -3,9 +3,11 @@ const qs = require('querystring');
 
 const router = (req, res) => {
   const url = req.url;
-  if (url === '/' || url.includes('/public') || url.includes('/signup') || url.includes('/chatRoom')) {
+  if (url === '/' || url.includes('/public') || url.includes('/signup')) {
     handler.publicHandler(req, res);
-  } else if (url.includes('/registration')) {
+  } else if(url === '/chatRoom') {
+    handler.chatRoomHandler(req, res);
+  }else if (url.includes('/registration')) {
     handler.createUser(req, res);
   } else if (url.includes('/login')) {
     handler.login(req, res);
