@@ -1,0 +1,22 @@
+body,
+main,
+section,
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 4vh;
+}
+
+.headline-title {
+    font-size: 4em;
+}
+
+.form-item {
+    font-size: 1.5em;
+    margin: 3vh;
+    width: 35vw;
+    height: 6vh;
+    text-align: center;
+}
