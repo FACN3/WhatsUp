@@ -12,7 +12,7 @@ const publicHandler = (req, res) => {
   var url = req.url;
   if (url === "/") {
     url = "/public/login.html";
-  } else if (url.includes("/signup")) {
+  } else if (url.includes("/registration")) {
     url = "/public/signUp.html";
   }
 
@@ -35,7 +35,6 @@ const publicHandler = (req, res) => {
 };
 
 //handle chatRoom
-
 const chatRoomHandler = (req, res) => {
   console.log(req.headers.cookie);
   if(!req.headers.cookie){ //cheking if the cookie does not exist as in there's no user with tha email signed up, then stay at home!
