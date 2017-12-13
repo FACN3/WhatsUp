@@ -1,17 +1,15 @@
-const handler = require("./handler");
-const qs = require("querystring");
+const handler = require('./handler');
+const qs = require('querystring');
 
 const router = (req, res) => {
-  var url = req.url;
-  console.log(url);
-  var method = req.method;
-  console.log(method);
-  if (url === "/" || url.includes("/public") || url.includes("/signUp")) {
+  const url = req.url;
+  if (url === '/' || url.includes('/public') || url.includes('/signup')) {
     handler.publicHandler(req, res);
-  } else if (url.includes("/registration") && method == "POST") {
+  } else if (url.includes('/registration')) {
     handler.createUser(req, res);
   } else {
-    res.end("errorrrrr");
+    res.writeHead(404, { 'content-type': 'text/html' });
+    res.end('error');
   }
 };
 
