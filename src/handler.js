@@ -1,3 +1,4 @@
+require("env2")("config.env");
 const fs = require("fs");
 const path = require("path");
 const queryString = require("querystring");
@@ -5,7 +6,7 @@ const hash = require("./hash");
 const postData = require("./queries/postData");
 const getData = require("./queries/getData");
 const {sign, verify } = require("jsonwebtoken");
-const secret = "ytddfhjwg26tgy";
+
 
 const publicHandler = (req, res) => {
   var url = req.url;
@@ -75,10 +76,10 @@ const login = (req, res) => {
     console.log(chunk);
   });
   req.on("end", () => {
+
     const submittedLogin = queryString.parse(data);
-    console.log(submittedLogin);
+
     getData.validUser(submittedLogin.email, (err, result) => {
-      console.log(result);
       if (err) {
         console.log(err);
       } else {
@@ -88,11 +89,14 @@ const login = (req, res) => {
           (err, hashed) => {
             if (err) {
               console.log(err, "user does not exist");
+              // res.writeHead(302, {
+              //   "Location": "/login"
+              // });
             } else {
               var user = {
                 'email': submittedLogin.email
               };
-              const signJWT = sign(user, secret);
+              const signJWT = sign(user, process.env.SECRET);
               res.setHeader('Set-Cookie', `jwt=${signJWT};  Max-Age:9000`);
               res.writeHead(302, {
                 "Location": "/chatRoom"
