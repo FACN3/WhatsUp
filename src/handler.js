@@ -139,4 +139,12 @@ const login = (req, res) => {
 };
 
 
-module.exports = { publicHandler, createUser, login, chatRoomHandler};
+//LOG OUT
+const logout = (req, res) => {
+  res.writeHead(302, {'content-type': 'text/plain',
+    'Location': '/',
+    'Set-Cookie': `jwt=0;  Max-Age=0`});
+  res.end();
+};
+
+module.exports = { publicHandler, createUser, login, chatRoomHandler, logout};
