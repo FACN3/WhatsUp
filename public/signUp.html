@@ -5,33 +5,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" type="text/css" href="../public/css/style.css">
   <title>sign up</title>
 </head>
 
 <body>
   <header>
-    <h1>sign up</h1>
+    <h1 class="headline-title">sign up</h1>
   </header>
   <section>
     <form action="/registration" method="POST">
       <label for="name">
-        <input id="name" placeholder="user name" type="text" name="name">
+        <input id="name" placeholder="user name" type="text" name="name" class="form-item">
       </label>
       <label for="email">
-        <input id="email" placeholder="email" type="text" name="email">
+        <input id="email" placeholder="email" type="text" name="email" class="form-item">
       </label>
       <label for="password">
-        <input id="password" type="text" placeholder="password" name="password">
+        <input id="password" type="password" placeholder="password" name="password" class="form-item">
       </label>
       <label for="confirmPassword">
-        <input id="confirmPassword" placeholder="confirm password" type="text" name="confirmPassword">
+        <input id="confirmPassword" placeholder="confirm password" type="password" name="confirmPassword" class="form-item">
       </label>
-      <button id="signUp" type="submit">sign up</button>
+      <button id="signUp" type="submit" class="form-item">sign up</button>
     </form>
   </section>
-
-
-
   <script src="../public/js/index.js"></script>
 </body>
 

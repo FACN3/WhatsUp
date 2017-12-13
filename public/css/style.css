@@ -6,7 +6,11 @@ form {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin: 4vh;
+    margin: 2vh;
+}
+
+.long-form-fix {
+    margin: 2vh;
 }
 
 .headline-title {

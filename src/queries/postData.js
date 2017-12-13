@@ -10,22 +10,22 @@ const createUser = (values, cb) => {
       } else {
         cb(null, JSON.stringify({ success: 'This was a success' }));
       }
-      //cb(err, JSON.stringify({ success: 'This was a success' }));
+      // refactor to cb(err, JSON.stringify({ success: 'This was a success' }));
     }
   );
 };
 
 const createMessage = (values, cb) => {
-  console.log(values);
   connect.query(
-    `INSERT INTO messages (userid, time_stamp, description) VALUES ($1, $2, $3,)`,
-    [values.userid, '20017-12-16 06:00:00', values.description],
+    `INSERT INTO messages (userid, time_stamp, description)VALUES ($1, $2, $3)`,
+    [values.userid, values.time_stamp, values.description],
     (err, data) => {
       if (err) {
         cb(err);
       } else {
         cb(null, JSON.stringify({ success: 'This was a success' }));
       }
+      // refactor to cb(err,JSON.stringify({ success: 'This was a success' }))
     }
   );
 };

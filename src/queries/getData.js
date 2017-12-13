@@ -5,8 +5,26 @@ const validUser = (email, cb) => {
     if (err) {
       cb(err);
     } else {
-      cb(null, res.rows);  // get all the data
+      cb(null, res.rows);
+      // refactor to cb(err, res.rows);
     }
   });
 };
-module.exports = { validUser };
+
+const getMessages = cb => {
+  connect.query(
+    `SELECT *
+     FROM messages m INNER JOIN users u
+     on m.userid = u.id
+      LIMIT 50`,
+    (err, res) => {
+      if (err) {
+        cb(err);
+      } else {
+        cb(null, res.rows);
+        //refactor to cb(err, res.rows);
+      }
+    }
+  );
+};
+module.exports = { validUser, getMessages };

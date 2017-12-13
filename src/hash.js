@@ -24,6 +24,7 @@ const comparePasswords = (password, hashedPassword, callback) => {
     } else {
       callback(null, res);
     }
+    // refactor to callback(err, res);
   });
 };
 
