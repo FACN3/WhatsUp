@@ -5,7 +5,7 @@ const validUser = (email, cb) => {
     if (err) {
       cb(err);
     } else {
-      cb(null, res.rows[0].email);
+      cb(null, res.rows[0]);
     }
   });
 };
