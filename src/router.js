@@ -7,6 +7,8 @@ const router = (req, res) => {
     handler.publicHandler(req, res);
   } else if (url.includes('/registration')) {
     handler.createUser(req, res);
+  } else if (url.includes('/login')) {
+    handler.login(req, res);
   } else {
     res.writeHead(404, { 'content-type': 'text/html' });
     res.end('error');
