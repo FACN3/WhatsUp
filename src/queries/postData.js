@@ -15,4 +15,19 @@ const createUser = (values, cb) => {
   );
 };
 
-module.exports = { createUser };
+const createMessage = (values, cb) => {
+  console.log(values);
+  connect.query(
+    `INSERT INTO messages (userid, time_stamp, description) VALUES ($1, $2, $3,)`,
+    [values.userid, '20017-12-16 06:00:00', values.description],
+    (err, data) => {
+      if (err) {
+        cb(err);
+      } else {
+        cb(null, JSON.stringify({ success: 'This was a success' }));
+      }
+    }
+  );
+};
+
+module.exports = { createUser, createMessage };

@@ -10,20 +10,22 @@
 
 <body>
 
-  <header>
     <h1>Chat Room</h1>
-    <h4 id="userName"></h4>
-    <button id="logout">logout</button>
-    </head>
+
+
     <section id="messagesArea">
 
     </section>
     <section>
       <form action="/newMessage" method="POST">
-        <textarea id="message"></textarea>
+        <textarea id="message" name="description"></textarea>
         <button id="createMessage">Create Message</button>
       </form>
     </section>
+
+    <form action='/logout' method='POST'>
+      <button class="logout">Log Out</button>
+    </form>
 </body>
 
 </html>
