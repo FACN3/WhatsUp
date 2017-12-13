@@ -8,8 +8,7 @@ const getData = require('./queries/getData');
 const { sign, verify } = require('jsonwebtoken');
 
 const publicHandler = (req, res) => {
-  var url = req.url;
-
+  var url = req.url; // refactor req => {url}
   if (url === '/') {
     url = '/public/login.html';
   } else if (url.includes('/registration')) {
@@ -37,7 +36,6 @@ const publicHandler = (req, res) => {
 
 //handle chatRoom
 const chatRoomHandler = (req, res) => {
-  console.log(req.headers.cookie);
   if (!req.headers.cookie) {
     //cheking if the cookie does not exist as in there's no user with tha email signed up, then stay at home!
     res.writeHead(302, { Location: '/' });
@@ -86,7 +84,7 @@ const createUser = (req, res) => {
           email: formSubmittedData.email,
           name: formSubmittedData.name
         };
-        // formSubmittedData.password = newPassword
+        // refacctor to formSubmittedData.password = newPassword
         postData.createUser(values, (err, data) => {
           if (err) {
             res.writeHead(500, { 'content-type': 'text/html' });
@@ -107,14 +105,11 @@ const login = (req, res) => {
   let data = '';
   req.on('data', chunk => {
     data += chunk;
-    console.log(chunk);
   });
   req.on('end', () => {
     const submittedLogin = queryString.parse(data);
-
     getData.validUser(submittedLogin.email, (err, result) => {
       if (err) {
-        console.log(err);
       } else {
         if (result.length == 0) {
           res.writeHead(302, {
@@ -131,8 +126,9 @@ const login = (req, res) => {
               } else {
                 const user = {
                   email: submittedLogin.email,
-                  id: result.id
+                  id: result[0].id
                 };
+                //creating a token
                 const signJWT = sign(user, process.env.SECRET);
                 res.setHeader('Set-Cookie', `jwt=${signJWT};  Max-Age:9000`);
                 res.writeHead(302, {
@@ -157,6 +153,7 @@ const message = (req, res) => {
   });
   req.on('end', () => {
     const newMessage = queryString.parse(message);
+    //decoding cookie
     verify(
       req.headers.cookie.split('=')[1],
       process.env.SECRET,
@@ -175,7 +172,9 @@ const message = (req, res) => {
               res.writeHead(500, { 'Content-Type': 'text/html' });
               res.end('description is not valid');
             } else {
-              res.writeHead(200, { 'Content-Type': 'text/html' });
+              res.writeHead(302, {
+                Location: '/chatRoom'
+              });
               res.end();
             }
           });
@@ -183,7 +182,20 @@ const message = (req, res) => {
       }
     );
   });
-  req.on('error', err => {});
+  req.on('error', err => {
+    console.log(err);
+  });
+};
+
+const getMessages = (req, res) => {
+  getData.getMessages((err, messages) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.writeHead(200, { 'content-type': 'application/json' });
+      res.end(JSON.stringify(messages));
+    }
+  });
 };
 
 //LOG OUT
@@ -202,5 +214,6 @@ module.exports = {
   login,
   chatRoomHandler,
   message,
-  logout
+  logout,
+  getMessages
 };

@@ -5,7 +5,6 @@ const buildScript = fs.readFileSync(`${__dirname}/db_build.sql`, `utf8`);
 
 connect.query(buildScript, (err, res) => {
   if (err) {
-    console.log(err);
     throw err;
   }
   connect.end();

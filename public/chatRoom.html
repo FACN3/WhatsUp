@@ -5,27 +5,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="../public/css/style.css">
+  <title>Chat Room</title>
 </head>
 
 <body>
 
-    <h1>Chat Room</h1>
-
-
-    <section id="messagesArea">
-
-    </section>
-    <section>
-      <form action="/newMessage" method="POST">
-        <textarea id="message" name="description"></textarea>
-        <button id="createMessage">Create Message</button>
-      </form>
-    </section>
-
-    <form action='/logout' method='POST'>
-      <button class="logout">Log Out</button>
+  <header>
+    <h1 class="headline-title">Chat Room</h1>
+  </header>
+  <section id="messagesArea">
+  </section>
+  <section>
+    <form action="/newMessage" method="POST">
+      <textarea id="description" name="description" class="form-item"></textarea>
+      <button id="createMessage" class="form-item">Create Message</button>
     </form>
+  </section>
+
+  <form action='/logout' method='POST'>
+    <button class="logout">Log Out</button>
+  </form>
+  <script src="../public/js/index.js"></script>
 </body>
 
 </html>

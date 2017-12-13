@@ -16,6 +16,8 @@ const router = (req, res) => {
     handler.message(req, res);
   } else if (url.includes('/logout')) {
     handler.logout(req, res);
+  } else if (url.includes('/getMessages')) {
+    handler.getMessages(req, res);
   } else {
     res.writeHead(404, { 'content-type': 'text/html' });
     res.end('error');
