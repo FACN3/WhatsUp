@@ -90,7 +90,9 @@ const createUser = (req, res) => {
             res.writeHead(500, { 'content-type': 'text/html' });
             res.end(err);
           } else {
-            res.writeHead(200, { 'content-type': 'text/html' });
+            res.writeHead(302, {
+              Location: '/login'
+            });
             res.end(data);
           }
         });
