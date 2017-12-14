@@ -3,8 +3,21 @@ const qs = require('querystring');
 
 const router = (req, res) => {
   const url = req.url;
+  const method = req.method;
+  console.log(`${req.method} ${req.url}`);
 
-  if (url === '/' || url.includes('/public') || url.includes('/registration')) {
+  // {
+  //   '/': {
+  //     'GET': publicHandler
+  //   },
+  //   /registration: {
+  //     'GET': publicHandler,
+  //     'POST': createUser
+  //   }
+  // }
+
+
+  if (url === '/' || url.includes('/public') || (url.includes('/registration') && method === 'GET')) {
     handler.publicHandler(req, res);
   } else if (url === '/chatRoom') {
     handler.chatRoomHandler(req, res);
